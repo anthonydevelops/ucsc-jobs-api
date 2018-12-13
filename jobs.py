@@ -4,18 +4,18 @@ from bs4 import BeautifulSoup
 
 
 class Job:
-    def __init__(self, link, date_posted, title, unit, pay):
+    def __init__(self, link, date_posted, position, unit, pay):
         self.link = link
         self.date_posted = date_posted
-        self.title = title
+        self.position = position
         self.unit = unit
         self.pay = pay
 
 
 def scrapeLinks(links, urls):
     for link in links:
-        req = requests.get(link)
-        soup = BeautifulSoup(req.text, 'html.parser')
+        link_req = requests.get(link)
+        soup = BeautifulSoup(link_req.text, 'html.parser')
 
         # Gets all the url links to job postings
         href_tags = soup.find_all('a', href=re.compile('action=displayER'))
@@ -24,12 +24,15 @@ def scrapeLinks(links, urls):
                 'http://www.careercenter.ucsc.edu/ers/erspub/' + href_tag.get('href'))
 
 
-def scrapeJobInfo(urls):
+def scrapeJobInfo(info, urls):
     for url in urls:
-        req = requests.get(url)
-        soup = BeautifulSoup(req.text, 'html.parser')
+        url_req = requests.get(url)
+        soup = BeautifulSoup(url_req.text, 'html.parser')
 
         # Gets all job info
+        position = soup.find('font', attrs={'face': 'verdana'})
+        reqs_title = soup.find_all('td', class_="title")
+        reqs_desc = soup.find_all('td', class_="value")
 
 
 if __name__ == '__main__':
@@ -40,6 +43,6 @@ if __name__ == '__main__':
 
     jobs = []
     urls = []
+    info = []
     scrapeLinks(links, urls)
-    print(urls)
-    # scrapeJobInfo(urls)
+    scrapeJobInfo(info, urls)
