@@ -2,14 +2,6 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-links = [
-    'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?action=non_workstudy',
-    'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?action=workstudy'
-]
-
-jobs = []
-urls = []
-
 
 class Job:
     def __init__(self, link, date_posted, title, unit, pay):
@@ -20,21 +12,34 @@ class Job:
         self.pay = pay
 
 
-for link in links:
-    req = requests.get(link)
-    soup = BeautifulSoup(req.text, 'html.parser')
+def scrapeLinks(links, urls):
+    for link in links:
+        req = requests.get(link)
+        soup = BeautifulSoup(req.text, 'html.parser')
 
-    # Gets the excerpt of the job posting
-    job_list = soup.find_all('td', class_="smallwording")
+        # Gets all the url links to job postings
+        href_tags = soup.find_all('a', href=re.compile('action=displayER'))
+        for href_tag in href_tags:
+            urls.append(
+                'http://www.careercenter.ucsc.edu/ers/erspub/' + href_tag.get('href'))
 
-    # Gets all the url links to job postings
-    href_tags = soup.find_all('a', href=re.compile('action=displayER'))
-    for href_tag in href_tags:
-        urls.append(
-            'http://www.careercenter.ucsc.edu/ers/erspub/' + href_tag.get('href'))
 
-    # Cycles through job excerpt to parse info in chunks
-    for job in job_list:
-        listing = job.contents[0]
+def scrapeJobInfo(urls):
+    for url in urls:
+        req = requests.get(url)
+        soup = BeautifulSoup(req.text, 'html.parser')
 
-print(urls)
+        # Gets all job info
+
+
+if __name__ == '__main__':
+    links = [
+        'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?action=non_workstudy',
+        'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?action=workstudy'
+    ]
+
+    jobs = []
+    urls = []
+    scrapeLinks(links, urls)
+    print(urls)
+    # scrapeJobInfo(urls)
