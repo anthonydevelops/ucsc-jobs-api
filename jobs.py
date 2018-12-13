@@ -12,27 +12,42 @@ class Job:
         self.pay = pay
 
 
-def scrapeLinks(links, urls):
-    for link in links:
+def scrapeLinks(links):
+    urls = [[] for _ in range(2)]
+    for idx, link in enumerate(links):
         link_req = requests.get(link)
         soup = BeautifulSoup(link_req.text, 'html.parser')
 
         # Gets all the url links to job postings
         href_tags = soup.find_all('a', href=re.compile('action=displayER'))
         for href_tag in href_tags:
-            urls.append(
+            urls[idx].append(
                 'http://www.careercenter.ucsc.edu/ers/erspub/' + href_tag.get('href'))
 
+    return urls
 
-def scrapeJobInfo(info, urls):
-    for url in urls:
-        url_req = requests.get(url)
-        soup = BeautifulSoup(url_req.text, 'html.parser')
 
-        # Gets all job info
-        position = soup.find('font', attrs={'face': 'verdana'})
-        reqs_title = soup.find_all('td', class_="title")
-        reqs_desc = soup.find_all('td', class_="value")
+def scrapeJobs(urls):
+    jobs = []
+    for url in range(0, len(urls)):
+        for idx, val in enumerate(urls[url]):
+            url_req = requests.get(val)
+            soup = BeautifulSoup(url_req.text, 'html.parser')
+
+            # Gets position title
+            position = soup.find('font', attrs={'face': 'verdana'})
+
+            # Gets table titles
+            table_title = soup.find_all('td', class_="title")
+            subset_table_title = set(
+                ['Computer', 'Filing', 'Driving', 'Other'])
+            reqs_headers = [
+                title for title in table_title if title not in subset_table_title]
+
+            # Gets table descriptions
+            reqs_desc = soup.find_all('td', class_="value")
+
+    return jobs
 
 
 if __name__ == '__main__':
@@ -41,8 +56,6 @@ if __name__ == '__main__':
         'http://www.careercenter.ucsc.edu/ers/erspub/main.cfm?action=workstudy'
     ]
 
-    jobs = []
-    urls = []
-    info = []
-    scrapeLinks(links, urls)
-    scrapeJobInfo(info, urls)
+    urls = scrapeLinks(links)
+    # print(urls)
+    jobs = scrapeJobs(urls)
