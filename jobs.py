@@ -28,9 +28,9 @@ def scrapeLinks(links):
 
 
 def scrapeJobs(urls):
-    jobs = []
-    for url in range(0, len(urls)):
-        for idx, val in enumerate(urls[url]):
+    jobs = [[] for _ in range(2)]
+    for i in range(0, len(urls)):
+        for idx, val in enumerate(urls[i]):
             url_req = requests.get(val)
             soup = BeautifulSoup(url_req.text, 'html.parser')
 
@@ -43,6 +43,9 @@ def scrapeJobs(urls):
                 ['Computer', 'Filing', 'Driving', 'Other'])
             reqs_headers = [
                 title for title in table_title if title not in subset_table_title]
+
+            for header in reqs_headers:
+                jobs[i].append(header.text)
 
             # Gets table descriptions
             reqs_desc = soup.find_all('td', class_="value")
@@ -59,3 +62,4 @@ if __name__ == '__main__':
     urls = scrapeLinks(links)
     # print(urls)
     jobs = scrapeJobs(urls)
+    print(jobs)
