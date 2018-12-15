@@ -29,26 +29,33 @@ def scrapeLinks(links):
 
 def scrapeJobs(urls):
     jobs = [[] for _ in range(2)]
+
+    # Cycle through work-study/non-work-study
     for i in range(0, len(urls)):
-        for idx, val in enumerate(urls[i]):
+
+        # For each url, parse that page and save it as a job
+        # based off the index
+        for val in urls[i]:
             url_req = requests.get(val)
             soup = BeautifulSoup(url_req.text, 'html.parser')
 
             # Gets position title
             position = soup.find('font', attrs={'face': 'verdana'})
+            position = position.text.strip()
 
             # Gets table titles
             table_title = soup.find_all('td', class_="title")
-            subset_table_title = set(
-                ['Computer', 'Filing', 'Driving', 'Other'])
-            reqs_headers = [
-                title for title in table_title if title not in subset_table_title]
-
-            for header in reqs_headers:
-                jobs[i].append(header.text)
+            for t_idx, t_val in enumerate(table_title):
+                if (t_idx < 9) or (t_idx == table_title[-1]):
+                    jobs[i].append(t_val.text)
 
             # Gets table descriptions
-            reqs_desc = soup.find_all('td', class_="value")
+            table_desc = soup.find_all('td', class_="value")
+            for d_idx, d_val in enumerate(table_desc):
+                if d_idx < 9:
+                    jobs[i].append(d_val.text)
+                else:
+                    break
 
     return jobs
 
