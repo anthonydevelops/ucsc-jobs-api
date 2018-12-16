@@ -1,13 +1,14 @@
 import requests
 import re
+import json
 from bs4 import BeautifulSoup
 
 
 class Job:
     def __init__(self, link, date_posted, position, unit, pay):
         self.link = link
-        self.date_posted = date_posted
         self.position = position
+        self.date_posted = date_posted
         self.unit = unit
         self.pay = pay
 
@@ -38,26 +39,39 @@ def scrapeJobs(urls):
         for val in urls[i]:
             url_req = requests.get(val)
             soup = BeautifulSoup(url_req.text, 'html.parser')
+            headers = []
+            desc = []
 
             # Gets position title
             position = soup.find('font', attrs={'face': 'verdana'})
-            position = position.text.strip()
+            # jobs[i].append(position.text.strip())
 
             # Gets table titles
             table_title = soup.find_all('td', class_="title")
             for t_idx, t_val in enumerate(table_title):
-                if (t_idx < 9) or (t_idx == table_title[-1]):
-                    jobs[i].append(t_val.text)
+                if (t_idx < 8) or (t_val == table_title[-1]):
+                    headers.append(t_val.text.strip())
 
             # Gets table descriptions
             table_desc = soup.find_all('td', class_="value")
             for d_idx, d_val in enumerate(table_desc):
-                if d_idx < 9:
-                    jobs[i].append(d_val.text)
-                else:
-                    break
+                if (d_idx < 8) or (d_val == table_desc[-1]):
+                    desc.append(d_val.text.strip())
 
-    return jobs
+            # Connect headers to desc, in JSON form
+            jobs[i].append({
+                "title": position.text.strip(),
+                headers[0]: desc[0],
+                headers[1]: desc[1],
+                headers[2]: desc[2],
+                headers[3]: desc[3],
+                headers[4]: desc[4],
+                headers[5]: desc[5],
+                headers[6]: desc[6],
+                headers[7]: desc[7],
+            })
+
+    return json.dumps(jobs)
 
 
 if __name__ == '__main__':
@@ -67,6 +81,5 @@ if __name__ == '__main__':
     ]
 
     urls = scrapeLinks(links)
-    # print(urls)
     jobs = scrapeJobs(urls)
     print(jobs)
