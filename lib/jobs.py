@@ -35,16 +35,16 @@ def scrapeJobs(urls):
     for i in range(0, len(urls)):
 
         # For each url, parse that page and save it as a job
-        # based off the index
         for val in urls[i]:
             url_req = requests.get(val)
             soup = BeautifulSoup(url_req.text, 'html.parser')
+
+            # Declare parsed content arrays
             headers = []
             desc = []
 
             # Gets position title
             position = soup.find('font', attrs={'face': 'verdana'})
-            # jobs[i].append(position.text.strip())
 
             # Gets table titles
             table_title = soup.find_all('td', class_="title")
@@ -71,7 +71,7 @@ def scrapeJobs(urls):
                 headers[7]: desc[7],
             })
 
-    return json.dumps(jobs)
+    return jobs
 
 
 if __name__ == '__main__':
@@ -82,4 +82,5 @@ if __name__ == '__main__':
 
     urls = scrapeLinks(links)
     jobs = scrapeJobs(urls)
-    print(jobs)
+    with open('data.json', 'w') as outfile:
+        json.dump(jobs, outfile)
