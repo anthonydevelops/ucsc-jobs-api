@@ -27,51 +27,43 @@ type Job struct {
 }
 
 func main() {
-	// Get dB key
-	key, err := ioutil.ReadFile("keys.txt")
+	// Get DB config key
+	uri, err := ioutil.ReadFile("keys.txt")
 	if err != nil {
 		fmt.Print(err)
 	}
-
-	fmt.Println(key)
-	str := string(key)
-	fmt.Println(str)
+	key := string(uri)
 
 	// Connect to mongoDB
-	client, err := mongo.Connect(context.TODO(), str)
-
+	client, err := mongo.Connect(context.TODO(), key)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
-
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Println("Connected to MongoDB!")
 
-	// Init router
+	// Initilize the router
 	r := mux.NewRouter()
 
 	// Get JSON data from web scraper
 	data, err := os.Open("./lib/data.json")
-
 	if err != nil {
 		fmt.Println(err)
 	}
-
 	fmt.Println("Successfully opened data.json")
 
 	defer data.Close()
 
 	// Route handles & endpoints
-	r.HandleFunc("/jobs", getJobs).Methods("GET")
-	r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
-	r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
-	r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
+	// r.HandleFunc("/jobs", getJobs).Methods("GET")
+	// r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
+	// r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
+	// r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
 
 	// Start server
 	log.Fatal(http.ListenAndServe(":8000", r))
