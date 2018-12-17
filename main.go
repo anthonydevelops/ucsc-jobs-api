@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -58,6 +59,19 @@ func main() {
 	fmt.Println("Successfully opened data.json")
 
 	defer data.Close()
+
+	// Turn JSON into a Go array
+	byteValue, _ := ioutil.ReadAll(data)
+	var jobs Jobs
+
+	json.Unmarshal(byteValue, &jobs)
+
+	// Iterate over Go jobs array
+	for i := 0; i < len(jobs); i++ {
+		for j := 0; j < len(jobs[i]); j++ {
+
+		}
+	}
 
 	// Route handles & endpoints
 	// r.HandleFunc("/jobs", getJobs).Methods("GET")
