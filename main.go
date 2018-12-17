@@ -1,10 +1,15 @@
 package main
 
 import (
+	"context"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
 // Job struct (Model)
@@ -22,10 +27,45 @@ type Job struct {
 }
 
 func main() {
+	// Get dB key
+	key, err := ioutil.ReadFile("keys.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	fmt.Println(key)
+	str := string(key)
+	fmt.Println(str)
+
+	// Connect to mongoDB
+	client, err := mongo.Connect(context.TODO(), str)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Connected to MongoDB!")
+
 	// Init router
 	r := mux.NewRouter()
 
 	// Get JSON data from web scraper
+	data, err := os.Open("./lib/data.json")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println("Successfully opened data.json")
+
+	defer data.Close()
 
 	// Route handles & endpoints
 	r.HandleFunc("/jobs", getJobs).Methods("GET")

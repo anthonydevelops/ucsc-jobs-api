@@ -4,15 +4,6 @@ import json
 from bs4 import BeautifulSoup
 
 
-class Job:
-    def __init__(self, link, date_posted, position, unit, pay):
-        self.link = link
-        self.position = position
-        self.date_posted = date_posted
-        self.unit = unit
-        self.pay = pay
-
-
 def scrapeLinks(links):
     urls = [[] for _ in range(2)]
     for idx, link in enumerate(links):
@@ -83,4 +74,4 @@ if __name__ == '__main__':
     urls = scrapeLinks(links)
     jobs = scrapeJobs(urls)
     with open('data.json', 'w') as outfile:
-        json.dump(jobs, outfile)
+        json.dump(jobs, outfile, sort_keys=True, indent=4)
