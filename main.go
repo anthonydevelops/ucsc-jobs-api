@@ -15,16 +15,35 @@ import (
 
 // Job struct (Model)
 type Job struct {
-	ID             string `json:"id"`
+	EmploymentDate string `json:"employmentdate"`
+	FilingDate     string `json:"filingdate"`
+	Hours          string `json:"hours"`
+	Pay            string `json:"pay"`
+	Schedule       string `json:"schedule"`
+	SkillsPref     string `json:"skillspref"`
+	SkillsRequired string `json:"skillsreq"`
 	Title          string `json:"title"`
 	Unit           string `json:"unit"`
-	Pay            int    `json:"pay"`
-	FilingDate     string `json:"filingdate"`
-	EmploymentDate string `json:"employmentdate"`
-	Hours          int    `json:"hours"`
-	Schedule       string `json:"schedule"`
-	SkillsRequired string `json:"skillsrequired"`
-	SkillsPref     string `json:"skillspref"`
+}
+
+func parseJSON() [][]Job {
+	// Get JSON data from web scraper
+	data, err := os.Open("./lib/data.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully opened data.json")
+
+	defer data.Close()
+
+	// Turn JSON into a Go array
+	jsonValues, _ := ioutil.ReadAll(data)
+	var jobs [][]Job
+
+	json.Unmarshal(jsonValues, &jobs)
+
+	// Iterate over Go jobs array
+	return jobs
 }
 
 func main() {
@@ -34,6 +53,7 @@ func main() {
 		fmt.Print(err)
 	}
 	key := string(uri)
+	fmt.Println(key)
 
 	// Connect to mongoDB
 	client, err := mongo.Connect(context.TODO(), key)
@@ -48,30 +68,12 @@ func main() {
 	}
 	fmt.Println("Connected to MongoDB!")
 
+	// Read JSON
+	parsedJSON := parseJSON()
+	fmt.Printf("%+v", parsedJSON)
+
 	// Initilize the router
 	r := mux.NewRouter()
-
-	// Get JSON data from web scraper
-	data, err := os.Open("./lib/data.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("Successfully opened data.json")
-
-	defer data.Close()
-
-	// Turn JSON into a Go array
-	byteValue, _ := ioutil.ReadAll(data)
-	var jobs Jobs
-
-	json.Unmarshal(byteValue, &jobs)
-
-	// Iterate over Go jobs array
-	for i := 0; i < len(jobs); i++ {
-		for j := 0; j < len(jobs[i]); j++ {
-
-		}
-	}
 
 	// Route handles & endpoints
 	// r.HandleFunc("/jobs", getJobs).Methods("GET")
