@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
 	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
@@ -69,11 +68,10 @@ func main() {
 	fmt.Println("Connected to MongoDB!")
 
 	// Read JSON
-	parsedJSON := parseJSON()
-	fmt.Printf("%+v", parsedJSON)
+	// parsedJSON := parseJSON()
 
 	// Initilize the router
-	r := mux.NewRouter()
+	// r := mux.NewRouter()
 
 	// Route handles & endpoints
 	// r.HandleFunc("/jobs", getJobs).Methods("GET")
@@ -82,5 +80,5 @@ func main() {
 	// r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
 
 	// Start server
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":8000", nil))
 }
