@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gorilla/mux"
 	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
@@ -26,7 +27,6 @@ type Job struct {
 }
 
 func parseJSON() [][]Job {
-	// Get JSON data from web scraper
 	data, err := os.Open("./lib/data.json")
 	if err != nil {
 		fmt.Println(err)
@@ -43,6 +43,14 @@ func parseJSON() [][]Job {
 
 	// Iterate over Go jobs array
 	return jobs
+}
+
+// Read JSON
+var jobs = parseJSON()
+
+func getJobs(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(jobs)
 }
 
 func main() {
@@ -67,18 +75,15 @@ func main() {
 	}
 	fmt.Println("Connected to MongoDB!")
 
-	// Read JSON
-	// parsedJSON := parseJSON()
-
 	// Initilize the router
-	// r := mux.NewRouter()
+	r := mux.NewRouter()
 
 	// Route handles & endpoints
-	// r.HandleFunc("/jobs", getJobs).Methods("GET")
+	r.HandleFunc("/jobs", getJobs).Methods("GET")
 	// r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
 	// r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
 	// r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
 
 	// Start server
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
