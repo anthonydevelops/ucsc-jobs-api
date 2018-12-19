@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -10,7 +9,6 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
 // Job struct (Model)
@@ -49,59 +47,41 @@ func storeJSON() [][]Job {
 // Read JSON
 var jobs = storeJSON()
 
+// Get all jobs
 func getJobs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(jobs)
 }
 
+// Get non-workstudy jobs
 func getNWSJobs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(jobs[0])
 }
 
+// Get workstudy jobs
 func getWSJobs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(jobs[1])
 }
 
-func main() {
-	// Get DB config key
-	uri, err := ioutil.ReadFile("keys.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	key := string(uri)
-	fmt.Println(key)
-
-	// Connect to mongoDB
-	client, err := mongo.Connect(context.TODO(), key)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Check the connection
-	err = client.Ping(context.TODO(), nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Connected to MongoDB!")
-
-	// Insert JSON into mongoDB
-	collection := client.Database("jobs-api").Collection("jobs")
+// Get job filtered by title
+func getJob(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
 	for i := 0; i < len(jobs); i++ {
 		for j := 0; j < len(jobs[i]); j++ {
-			insertJobs, err := collection.
-				InsertOne(context.TODO(), jobs[i][j])
-			if err != nil {
-				log.Fatal(err)
+			if jobs[i][j].Title == params["title"] {
+				json.NewEncoder(w).Encode(jobs[i][j])
+				return
 			}
-
-			fmt.Println(insertJobs)
 		}
+
 	}
+	json.NewEncoder(w).Encode(&Job{})
+}
 
-	fmt.Println("Inserted a JSON document")
-
+func main() {
 	// Initilize the router
 	r := mux.NewRouter()
 
@@ -109,7 +89,7 @@ func main() {
 	r.HandleFunc("/jobs", getJobs).Methods("GET")
 	r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
 	r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
-	// r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
+	r.HandleFunc("/jobs/{title}", getJob).Methods("GET")
 
 	// Start server
 	log.Fatal(http.ListenAndServe(":8000", r))
