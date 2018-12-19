@@ -15,6 +15,7 @@ import (
 
 // Job struct (Model)
 type Job struct {
+	DateApproved   string `json:"dateapproved"`
 	EmploymentDate string `json:"employmentdate"`
 	FilingDate     string `json:"filingdate"`
 	Hours          string `json:"hours"`
@@ -26,7 +27,7 @@ type Job struct {
 	Unit           string `json:"unit"`
 }
 
-func parseJSON() [][]Job {
+func storeJSON() [][]Job {
 	data, err := os.Open("./lib/data.json")
 	if err != nil {
 		fmt.Println(err)
@@ -46,11 +47,21 @@ func parseJSON() [][]Job {
 }
 
 // Read JSON
-var jobs = parseJSON()
+var jobs = storeJSON()
 
 func getJobs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(jobs)
+}
+
+func getNWSJobs(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(jobs[0])
+}
+
+func getWSJobs(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(jobs[1])
 }
 
 func main() {
@@ -75,13 +86,29 @@ func main() {
 	}
 	fmt.Println("Connected to MongoDB!")
 
+	// Insert JSON into mongoDB
+	collection := client.Database("jobs-api").Collection("jobs")
+	for i := 0; i < len(jobs); i++ {
+		for j := 0; j < len(jobs[i]); j++ {
+			insertJobs, err := collection.
+				InsertOne(context.TODO(), jobs[i][j])
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Println(insertJobs)
+		}
+	}
+
+	fmt.Println("Inserted a JSON document")
+
 	// Initilize the router
 	r := mux.NewRouter()
 
 	// Route handles & endpoints
 	r.HandleFunc("/jobs", getJobs).Methods("GET")
-	// r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
-	// r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
+	r.HandleFunc("/jobs/nonworkstudy", getNWSJobs).Methods("GET")
+	r.HandleFunc("/jobs/workstudy", getWSJobs).Methods("GET")
 	// r.HandleFunc("/jobs/{id}", getJob).Methods("GET")
 
 	// Start server

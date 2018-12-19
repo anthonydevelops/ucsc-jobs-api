@@ -39,7 +39,7 @@ def scrapeJobs(urls):
             # Gets table descriptions
             table_desc = soup.find_all('td', class_="value")
             for d_idx, d_val in enumerate(table_desc):
-                if (d_idx < 8) or (d_val == table_desc[-1]):
+                if (d_idx < 8) or (d_idx == len(table_desc)-1):
                     desc.append(d_val.text.strip())
 
             # Connect headers to desc, in JSON form
@@ -53,6 +53,7 @@ def scrapeJobs(urls):
                 "schedule": desc[5],
                 "skillsreq": desc[6],
                 "skillspref": desc[7],
+                "dateapproved": desc[8]
             })
 
     return jobs
