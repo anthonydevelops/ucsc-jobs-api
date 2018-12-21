@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -9,6 +10,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
 // Job struct (Model)
@@ -84,6 +86,26 @@ func getJob(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// Get DB config key
+	uri, err := ioutil.ReadFile("keys.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	key := string(uri)
+
+	// Connect to mongoDB
+	client, err := mongo.Connect(context.TODO(), key)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Connected DB")
+
 	// Initilize the router
 	r := mux.NewRouter()
 
@@ -94,5 +116,6 @@ func main() {
 	r.HandleFunc("/jobs/{title}", getJob).Methods("GET")
 
 	// Start server
+	log.Println("Listening on port 8000")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
