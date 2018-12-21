@@ -4,6 +4,7 @@ import json
 from bs4 import BeautifulSoup
 
 
+# Returns all job URL links
 def scrapeLinks(links):
     urls = [[] for _ in range(2)]
     for idx, link in enumerate(links):
@@ -19,18 +20,18 @@ def scrapeLinks(links):
     return urls
 
 
+# Returns all job descriptions
 def scrapeJobs(urls):
     jobs = [[] for _ in range(2)]
 
-    # Cycle through work-study/non-work-study
     for i in range(0, len(urls)):
 
-        # For each url, parse that page and save it as a job
+        # Parse each page for job info
         for val in urls[i]:
             url_req = requests.get(val)
             soup = BeautifulSoup(url_req.text, 'html.parser')
 
-            # Declare parsed content arrays
+            # Declare parsed content array
             desc = []
 
             # Gets position title
@@ -67,5 +68,7 @@ if __name__ == '__main__':
 
     urls = scrapeLinks(links)
     jobs = scrapeJobs(urls)
+
+    # Send data to a JSON file
     with open('data.json', 'w') as outfile:
         json.dump(jobs, outfile, sort_keys=True, indent=4)

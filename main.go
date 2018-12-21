@@ -25,7 +25,11 @@ type Job struct {
 	Unit           string `json:"unit"`
 }
 
-func storeJSON() [][]Job {
+// Read JSON
+var jobs = parseJSON()
+
+// Return Go array made up of JSON values
+func parseJSON() [][]Job {
 	data, err := os.Open("./lib/data.json")
 	if err != nil {
 		fmt.Println(err)
@@ -43,9 +47,6 @@ func storeJSON() [][]Job {
 	// Iterate over Go jobs array
 	return jobs
 }
-
-// Read JSON
-var jobs = storeJSON()
 
 // Get all jobs
 func getJobs(w http.ResponseWriter, r *http.Request) {
