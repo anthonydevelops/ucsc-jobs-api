@@ -17,6 +17,7 @@ type Job struct {
 	EmploymentDate string `json:"employmentdate"`
 	FilingDate     string `json:"filingdate"`
 	Hours          string `json:"hours"`
+	JobType        string `json:"jobtype"`
 	Pay            string `json:"pay"`
 	Schedule       string `json:"schedule"`
 	SkillsPref     string `json:"skillspref"`

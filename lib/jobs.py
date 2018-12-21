@@ -34,17 +34,24 @@ def scrapeJobs(urls):
             # Declare parsed content array
             desc = []
 
-            # Gets position title
+            # Get position title
             position = soup.find('font', attrs={'face': 'verdana'})
 
-            # Gets table descriptions
+            # Get table descriptions
             table_desc = soup.find_all('td', class_="value")
             for d_idx, d_val in enumerate(table_desc):
                 if (d_idx < 8) or (d_idx == len(table_desc)-1):
                     desc.append(d_val.text.strip())
 
+            # Get job type
+            if i == 0:
+                jobType = "nonworkstudy"
+            else:
+                jobType = "workstudy"
+
             # Connect headers to desc, in JSON form
             jobs[i].append({
+                "jobtype": jobType,
                 "title": position.text.strip(),
                 "unit": desc[0],
                 "pay": desc[1],
