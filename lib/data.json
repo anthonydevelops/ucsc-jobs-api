@@ -28,19 +28,6 @@
         },
         {
             "dateapproved": "12-19-2018",
-            "employmentdate": "2019-01-07 00:0 TO 2019-06-13 00:0",
-            "filingdate": "1/11/19 orUntil Filled",
-            "hours": "10",
-            "jobtype": "nonworkstudy",
-            "pay": "12.00",
-            "schedule": "",
-            "skillspref": "",
-            "skillsreq": "Experience as sociology peer advisor Senior standing sociology major3.0 GPA or higher cumulative GPACurrently in good academic standing, and expected to maintain good standing for duration of employmentStrong communication and interpersonal skillsKnowledge of campus resources and servicesAble to work 10 hours per week Ability to work in flexible work environment, and adapt to changesAbility to work collaboratively with othersSelf-motivated",
-            "title": "Sociology Lead Peer Advisor",
-            "unit": "Social Sciences - Sociology"
-        },
-        {
-            "dateapproved": "12-19-2018",
             "employmentdate": "Apr-01-2019 TO Sep-01-2019",
             "filingdate": "1/31/19 orUntil Filled",
             "hours": "10",
@@ -132,19 +119,6 @@
         },
         {
             "dateapproved": "12-3-2018",
-            "employmentdate": "ASAP TO Jun-13-2019",
-            "filingdate": "Until Filled",
-            "hours": "10-15",
-            "jobtype": "nonworkstudy",
-            "pay": "17.00",
-            "schedule": "Varies",
-            "skillspref": "Knowledge and experience working with SQL, Ceph, or protocol buffers is a plus.Courses preferred: Database systems (CMPS 180, 181, or 278)",
-            "skillsreq": "To help meet the programing needs of the SkyhookDB incubator, the Center for Research in Open Source Software (CROSS) is looking for a part-time programming assistant to assist our current incubator lead. The programming assistant will work directly with the project scientist leading this incubator as well as with PhD students working on the development of other CROSS-funded research. Development is centered around two open source products: PostgreSQL database and Ceph distributed storage.  Candidates should be Computer Science or Computer Engineering undergraduate or masters student with coding experience, knowledge of C++ and Linux.Courses required: Operating systems (CMPS 111)",
-            "title": "Programming Assistant",
-            "unit": "SOE"
-        },
-        {
-            "dateapproved": "12-3-2018",
             "employmentdate": "ASAP TO 4-1-2019",
             "filingdate": "Until Filled",
             "hours": "10",
@@ -155,6 +129,19 @@
             "skillsreq": "iOS programming and submitting apps to the app store and the use of TestFlight.",
             "title": "iOS Programmer",
             "unit": "Social Sciences - Psychology"
+        },
+        {
+            "dateapproved": "12-3-2018",
+            "employmentdate": "ASAP TO Jun-13-2019",
+            "filingdate": "Until Filled",
+            "hours": "10-15",
+            "jobtype": "nonworkstudy",
+            "pay": "17.00",
+            "schedule": "Varies",
+            "skillspref": "Knowledge and experience working with SQL, Ceph, or protocol buffers is a plus.Courses preferred: Database systems (CMPS 180, 181, or 278)",
+            "skillsreq": "To help meet the programing needs of the SkyhookDB incubator, the Center for Research in Open Source Software (CROSS) is looking for a part-time programming assistant to assist our current incubator lead. The programming assistant will work directly with the project scientist leading this incubator as well as with PhD students working on the development of other CROSS-funded research. Development is centered around two open source products: PostgreSQL database and Ceph distributed storage.  Candidates should be Computer Science or Computer Engineering undergraduate or masters student with coding experience, knowledge of C++ and Linux.Courses required: Operating systems (CMPS 111)",
+            "title": "Programming Assistant",
+            "unit": "SOE"
         },
         {
             "dateapproved": "12-3-2018",
@@ -275,19 +262,6 @@
         },
         {
             "dateapproved": "9-27-2018",
-            "employmentdate": "2018-09-23 00:0 TO 2019-06-15 00:0",
-            "filingdate": "Until Filled",
-            "hours": "6-8",
-            "jobtype": "nonworkstudy",
-            "pay": "12.00",
-            "schedule": "Monday-Friday",
-            "skillspref": "Experience with Macintosh word processing programs. Experienced and knowledgeable in waste reduction and management. Experience with desktop publishing and web design. Ability to recognize a gap in the waste reduction program, and determine a low impact solution.",
-            "skillsreq": "Has taken college level courses relating to environmental and social issues.  Must be self motivated , have a positive work attitude, and be able to work in a composting team atmosphere. Ability to work with word processing programs. Ability to conduct research in preparation for developing an organized presentation. Translate/demonstrate daily program goals to diverse populations using strong public speaking skills. Ability to be a role model. Ability to work safely with general cleaning chemicals. Must be able to work a steady number of hours per week throughout each quarter. Ability to bend and lift and perform other repetitive motions.Possession of a valid California driver\u2019s license and a good driving record.",
-            "title": "Waste Reduction Program Specialist - West Zone",
-            "unit": "Facilities"
-        },
-        {
-            "dateapproved": "9-27-2018",
             "employmentdate": "2018-09-23 00:0 TO 2019-06-13 00:0",
             "filingdate": "Until Filled",
             "hours": "10+",
@@ -298,6 +272,19 @@
             "skillsreq": "Ability to comprehend Grounds policies and procedures. Ability to work independently with minimal supervision. Ability to make decisions and prioritize the management of projects. Ability to work effectively in dealing with diverse groups of people. Clear oral and written communication skills. Basic knowledge of Windows, Word, Excel and File Maker Pro.Ability to  fill out weekly Excel timesheets & bi-monthly Cruz Pay electronic timesheets punctually and accurately. . Ability to safely use small powered equipment and wear required safety gear. Ability to safely move containers and equipment weighing up to 50 pounds with or without accommodation. Ability to work outdoors in all weather conditions and in dusty/pollen conditions. Possession of a valid drivers license. Available to work in at least 3 hour blocks anytime between 7:00am and 3:30 pm M-F",
             "title": "Grounds Student Assistant",
             "unit": "Physical Plant"
+        },
+        {
+            "dateapproved": "9-27-2018",
+            "employmentdate": "2018-09-23 00:0 TO 2019-06-15 00:0",
+            "filingdate": "Until Filled",
+            "hours": "6-8",
+            "jobtype": "nonworkstudy",
+            "pay": "12.00",
+            "schedule": "Monday-Friday",
+            "skillspref": "Experience with Macintosh word processing programs. Experienced and knowledgeable in waste reduction and management. Experience with desktop publishing and web design. Ability to recognize a gap in the waste reduction program, and determine a low impact solution.",
+            "skillsreq": "Has taken college level courses relating to environmental and social issues.  Must be self motivated , have a positive work attitude, and be able to work in a composting team atmosphere. Ability to work with word processing programs. Ability to conduct research in preparation for developing an organized presentation. Translate/demonstrate daily program goals to diverse populations using strong public speaking skills. Ability to be a role model. Ability to work safely with general cleaning chemicals. Must be able to work a steady number of hours per week throughout each quarter. Ability to bend and lift and perform other repetitive motions.Possession of a valid California driver\u2019s license and a good driving record.",
+            "title": "Waste Reduction Program Specialist - West Zone",
+            "unit": "Facilities"
         },
         {
             "dateapproved": "9-12-2018",
@@ -420,19 +407,6 @@
         },
         {
             "dateapproved": "12-19-2018",
-            "employmentdate": "2019-01-07 00:0 TO 2019-06-13 00:0",
-            "filingdate": "1/11/19 orUntil Filled",
-            "hours": "10",
-            "jobtype": "workstudy",
-            "pay": "12.00",
-            "schedule": "",
-            "skillspref": "",
-            "skillsreq": "Experience as sociology peer advisor Senior standing sociology major3.0 GPA or higher cumulative GPACurrently in good academic standing, and expected to maintain good standing for duration of employmentStrong communication and interpersonal skillsKnowledge of campus resources and servicesAble to work 10 hours per week Ability to work in flexible work environment, and adapt to changesAbility to work collaboratively with othersSelf-motivated",
-            "title": "Sociology Lead Peer Advisor",
-            "unit": "Social Sciences - Sociology"
-        },
-        {
-            "dateapproved": "12-19-2018",
             "employmentdate": "Apr-01-2019 TO Sep-01-2019",
             "filingdate": "1/31/19 orUntil Filled",
             "hours": "10",
@@ -524,6 +498,19 @@
         },
         {
             "dateapproved": "12-3-2018",
+            "employmentdate": "ASAP TO Jun-13-2019",
+            "filingdate": "Until Filled",
+            "hours": "10-15",
+            "jobtype": "workstudy",
+            "pay": "17.00",
+            "schedule": "Varies",
+            "skillspref": "Knowledge and experience working with SQL, Ceph, or protocol buffers is a plus.Courses preferred: Database systems (CMPS 180, 181, or 278)",
+            "skillsreq": "To help meet the programing needs of the SkyhookDB incubator, the Center for Research in Open Source Software (CROSS) is looking for a part-time programming assistant to assist our current incubator lead. The programming assistant will work directly with the project scientist leading this incubator as well as with PhD students working on the development of other CROSS-funded research. Development is centered around two open source products: PostgreSQL database and Ceph distributed storage.  Candidates should be Computer Science or Computer Engineering undergraduate or masters student with coding experience, knowledge of C++ and Linux.Courses required: Operating systems (CMPS 111)",
+            "title": "Programming Assistant",
+            "unit": "SOE"
+        },
+        {
+            "dateapproved": "12-3-2018",
             "employmentdate": "ASAP TO 4-1-2019",
             "filingdate": "Until Filled",
             "hours": "10",
@@ -550,32 +537,6 @@
         },
         {
             "dateapproved": "12-3-2018",
-            "employmentdate": "TO 2019-06-01 00:0",
-            "filingdate": "Until Filled",
-            "hours": "12",
-            "jobtype": "workstudy",
-            "pay": "15.00",
-            "schedule": "",
-            "skillspref": "Experience with the table saw. Basic knowledge of CNC and laser cutting techniques. Experience with Adobe Illustrator, Photoshop, and or equivalent software.",
-            "skillsreq": "Basic knowledge of shop power and hand tools. Including drill presses, jig saws, miter saw, disc/belt sander and panel saw. Basic interpersonal skills and good communication with staff,faculty and other students. willing and able to lift heavy objects up to 100 lbs. assisted or unassisted.",
-            "title": "WoodShop Assistant",
-            "unit": "Arts - Division"
-        },
-        {
-            "dateapproved": "12-3-2018",
-            "employmentdate": "ASAP TO Jun-13-2019",
-            "filingdate": "Until Filled",
-            "hours": "10-15",
-            "jobtype": "workstudy",
-            "pay": "17.00",
-            "schedule": "Varies",
-            "skillspref": "Knowledge and experience working with SQL, Ceph, or protocol buffers is a plus.Courses preferred: Database systems (CMPS 180, 181, or 278)",
-            "skillsreq": "To help meet the programing needs of the SkyhookDB incubator, the Center for Research in Open Source Software (CROSS) is looking for a part-time programming assistant to assist our current incubator lead. The programming assistant will work directly with the project scientist leading this incubator as well as with PhD students working on the development of other CROSS-funded research. Development is centered around two open source products: PostgreSQL database and Ceph distributed storage.  Candidates should be Computer Science or Computer Engineering undergraduate or masters student with coding experience, knowledge of C++ and Linux.Courses required: Operating systems (CMPS 111)",
-            "title": "Programming Assistant",
-            "unit": "SOE"
-        },
-        {
-            "dateapproved": "12-3-2018",
             "employmentdate": "TO 2019-06-13 00:0",
             "filingdate": "Until Filled",
             "hours": "20",
@@ -586,6 +547,19 @@
             "skillsreq": "Clerical/receptionist experience. Experience with filing, writing and answering  phones; detail oriented; strong ability to prioritize; good organizational skills; Intermediate skills in Microsoft Word, Publisher and Excel; ability to lift 50 pounds with or without assistance.",
             "title": "Custodial Office Assistant",
             "unit": "Facilities"
+        },
+        {
+            "dateapproved": "12-3-2018",
+            "employmentdate": "TO 2019-06-01 00:0",
+            "filingdate": "Until Filled",
+            "hours": "12",
+            "jobtype": "workstudy",
+            "pay": "15.00",
+            "schedule": "",
+            "skillspref": "Experience with the table saw. Basic knowledge of CNC and laser cutting techniques. Experience with Adobe Illustrator, Photoshop, and or equivalent software.",
+            "skillsreq": "Basic knowledge of shop power and hand tools. Including drill presses, jig saws, miter saw, disc/belt sander and panel saw. Basic interpersonal skills and good communication with staff,faculty and other students. willing and able to lift heavy objects up to 100 lbs. assisted or unassisted.",
+            "title": "WoodShop Assistant",
+            "unit": "Arts - Division"
         },
         {
             "dateapproved": "11-28-2018",
@@ -654,6 +628,19 @@
         },
         {
             "dateapproved": "11-5-2018",
+            "employmentdate": "2018-11-05 00:0 TO 2019-06-13 00:0",
+            "filingdate": "Until Filled",
+            "hours": "20",
+            "jobtype": "workstudy",
+            "pay": "12.00",
+            "schedule": "Tue/Thurs/Fri/Sat",
+            "skillspref": "Experience sorting and delivering mail/packages using a van. Warehouse experience.Sales experience (online postings).",
+            "skillsreq": "Possession of a valid license to drive in California and a good driving record.Ability to safely move furniture and equipment weighing up to 75 lbs. (and paper cases weighing 50 lbs.).Ability to perform independently and with a high degree of initiative, integrity, and good judgment.Ability to follow directions with special attention to safety issues.Experience working with, around, for diverse groups of people effectively, cooperatively, and respectfully.Clear oral and written communication skills.Ability to identify and sort/organize items based on type and enter items into inventory.",
+            "title": "Material Handler/Warehouse Assistant",
+            "unit": "Risk Services"
+        },
+        {
+            "dateapproved": "11-5-2018",
             "employmentdate": "2019-01-06 00:0 TO 2019-03-22 00:0",
             "filingdate": "Until Filled",
             "hours": "10",
@@ -677,19 +664,6 @@
             "skillsreq": "-Strong verbal communication skills-Extremely detail-oriented and organized-Responsible, reliable, and proactive",
             "title": "Development and Communications Associate",
             "unit": "Limitless Horizons lxil"
-        },
-        {
-            "dateapproved": "11-5-2018",
-            "employmentdate": "2018-11-05 00:0 TO 2019-06-13 00:0",
-            "filingdate": "Until Filled",
-            "hours": "20",
-            "jobtype": "workstudy",
-            "pay": "12.00",
-            "schedule": "Tue/Thurs/Fri/Sat",
-            "skillspref": "Experience sorting and delivering mail/packages using a van. Warehouse experience.Sales experience (online postings).",
-            "skillsreq": "Possession of a valid license to drive in California and a good driving record.Ability to safely move furniture and equipment weighing up to 75 lbs. (and paper cases weighing 50 lbs.).Ability to perform independently and with a high degree of initiative, integrity, and good judgment.Ability to follow directions with special attention to safety issues.Experience working with, around, for diverse groups of people effectively, cooperatively, and respectfully.Clear oral and written communication skills.Ability to identify and sort/organize items based on type and enter items into inventory.",
-            "title": "Material Handler/Warehouse Assistant",
-            "unit": "Risk Services"
         },
         {
             "dateapproved": "10-23-2018",
